@@ -6,9 +6,10 @@ import Logout from "./logout";
 import { useSession } from "next-auth/react";
 import useScroll from "@/hooks/use-scroll";
 import { HeartPulse } from "lucide-react";
+import { Skeleton } from "./ui/skeleton";
 
 export default function Header() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const isScrolled = useScroll(50);
 
   return (
@@ -20,12 +21,19 @@ export default function Header() {
       } `}
     >
       <nav className="flex h-16 w-full items-center justify-between">
-        <Link className="flex items-center justify-center" href="#">
+        <Link className="flex items-center justify-center" href="/">
           <HeartPulse className="h-6 w-6 text-black" />
-          <span className="ml-2 text-xl font-bold">AI Health Checker</span>
+          <span className="hidden sm:flex ml-2 text-xl font-bold">
+            AI Health Checker
+          </span>
         </Link>
         <div className="gap-4">
-          {session ? (
+          {status === "loading" ? (
+            <div className="flex items-center space-x-4">
+              <Skeleton className="h-8 w-[100px]" />
+              <Skeleton className="h-8 w-[100px]" />
+            </div>
+          ) : session?.user ? (
             <div className="flex items-center justify-center gap-x-3">
               <Link
                 href="/result"
@@ -44,7 +52,7 @@ export default function Header() {
               href="/auth/sign-in"
               className={cn(
                 buttonVariants({ variant: "default", size: "lg" }),
-                "px-4 rounded-full"
+                "px-5 h-8 sm:h-9 rounded-full"
               )}
             >
               Sign In

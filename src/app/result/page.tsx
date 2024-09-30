@@ -28,7 +28,7 @@ export default async function ResultsPage() {
   const queries = await getQueries(userId);
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
+    <div className="container mx-auto p-4 py-16 sm:py-20 space-y-6">
       <h1 className="text-3xl font-bold text-center mb-6">
         Your Symptom Analysis Results
       </h1>

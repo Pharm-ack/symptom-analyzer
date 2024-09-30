@@ -32,7 +32,7 @@ export async function analyzeSymptoms(
   const { symptoms, age, gender } = submission.value;
 
   const session = await auth();
-  if (!session) return { status: "error", message: "Unauthorized" };
+  if (!session?.user) return { status: "error", message: "Unauthorized" };
 
   const userId = session.user.id;
   if (!userId) {

@@ -6,7 +6,7 @@ export default middleware((req) => {
 
   if (nextUrl.pathname.startsWith("/dashboard")) {
     if (!isLoggedIn) {
-      return Response.redirect(new URL("/", nextUrl));
+      return Response.redirect(new URL("/auth/sign-in", nextUrl));
     }
   }
 });

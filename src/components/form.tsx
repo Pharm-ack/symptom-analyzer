@@ -19,6 +19,7 @@ import { Textarea } from "./ui/textarea";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -41,20 +42,14 @@ export default function Form() {
   const { toast } = useToast();
   const [formState, action] = useFormState<FormState, FormData>(
     async (prevState, formData) => {
-      console.log("Form submitted, attempting to show toast");
-      toast({
-        title: "🎙️ Analyzing is in progress...",
-        description:
-          "Hang tight! Our digital wizards are sprinkling magic dust on your symptoms! ✨",
-      });
-      console.log("Toast called");
-
       const result = await analyzeSymptoms(prevState, formData);
 
-      toast({
-        title: "🎉 Woohoo! 🎊",
-        description: "Symptoms analyzed successfully!",
-      });
+      if (result.status === "success") {
+        toast({
+          title: "🎉 Woohoo! 🎊",
+          description: "Symptoms analyzed successfully!",
+        });
+      }
 
       if (result.status === "error") {
         toast({
@@ -136,9 +131,11 @@ export default function Form() {
                     <SelectValue placeholder="Select gender" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectGroup>
+                      <SelectItem value="male">Male</SelectItem>
+                      <SelectItem value="female">Female</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
                 <p className="text-red-500 text-xs">{fields.gender.errors}</p>

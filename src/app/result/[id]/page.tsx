@@ -32,7 +32,7 @@ export default async function SymptomAnalysisResult({
   const query = await getSymptomAnalysis(params.id, userId);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container py-16 sm:py-20 mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Symptom Analysis Result</h1>
 
       <Card className="mb-4">

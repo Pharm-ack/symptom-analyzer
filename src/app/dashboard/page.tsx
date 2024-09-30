@@ -4,7 +4,7 @@ import Form from "@/components/form";
 export default function page() {
   return (
     <BgGradient>
-      <div className="mx-auto max-w-7xl px-6 py-14s sm:py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
         <div className="flex flex-col items-center justify-center gap-6 text-center">
           <h2 className="capitalize text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             AI-Powered Symptom Analysis

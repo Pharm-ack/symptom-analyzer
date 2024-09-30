@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 export default function Social() {
   const onClick = (provider: "google" | "github") => {
     signIn(provider, {
-      callbackUrl: "/",
+      callbackUrl: "/dashboard",
     });
   };
   return (
