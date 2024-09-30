@@ -17,7 +17,7 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
   (
     {
       shimmerColor = "#ffffff",
-      shimmerSize = "0.16em",
+      shimmerSize = "0.14em",
       shimmerDuration = "3s",
       borderRadius = "100px",
       background = "rgba(0, 0, 0, 1)",

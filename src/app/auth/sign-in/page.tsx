@@ -1,4 +1,3 @@
-import { signIn } from "@/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,7 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Icon } from "@iconify/react";
 
-export default function LoginPage() {
+import SignInPasskey from "@/components/signin-passkey";
+import { signIn } from "@/auth";
+
+export default async function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-[75vh]">
       <Card className="w-[350px]">
@@ -19,10 +21,10 @@ export default function LoginPage() {
             Sign in
           </CardTitle>
           <CardDescription className="text-center">
-            Use your Google account to sign in
+            Choose your sign-in method
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex items-center justify-center">
+        <CardContent className="flex flex-col items-center justify-center space-y-4">
           <form
             action={async () => {
               "use server";
@@ -34,6 +36,8 @@ export default function LoginPage() {
               Sign in with Google
             </Button>
           </form>
+
+          <SignInPasskey />
         </CardContent>
         <CardFooter>
           <p className="text-xs text-center text-gray-700 w-full">
